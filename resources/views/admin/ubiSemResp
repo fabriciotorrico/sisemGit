@@ -1,0 +1,53 @@
+@extends('layouts.layout')
+
+@section('content')
+
+<div class="container">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="http://maps.google.com/maps/api/js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3Q4aQ5C6guMx3mg86trNXr6z7Oxp7t4A&callback=initMap"></script>
+
+        <style type="text/css">
+              #mymap {
+                  border:2px solid black;
+                  width: 100%;
+                  height: 600px;
+                  top:30px;
+              }
+        </style>
+
+        <!--Dibuajamos el mapa-->
+        <div id="mymap"></div>
+
+          <script type="text/javascript">
+
+            var mymap = new GMaps({
+              el: '#mymap',
+              lat: -16.493161,
+              lng: -68.121140,
+              zoom:15
+            });
+
+            var semaforos = <?php print_r(json_encode($semaforos)) ?>;
+
+            $.each( semaforos, function( index, value ){
+                mymap.addMarker({
+                  lat: value.lat,
+                  lng: value.lng,
+                  t_rojo: value.t_rojo,
+                  t_amarillo: value.t_amarillo,
+                  t_verde: value.t_verde,
+                  rotation: 90.0,
+                  alpha: 0.1,
+                  infoWindow: {content: '<p>HTML Content</p>'},
+                  click: function(e) {
+                  alert('Rojo: '+ value.t_rojo);}
+              });
+            });
+
+
+          </script>
+</div>
+@endsection
