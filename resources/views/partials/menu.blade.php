@@ -1,58 +1,70 @@
 <!--sidebar-menu-->
-  <div id="sidebar"><a href="sisem.app/h" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+  <div id="sidebar"><a href="{{ asset('sisem.app/h') }}" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
     <ul>
-      <li class="active"><a href="/h"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
 
-      <!--mapa ubicacion semaforos-->
-      <li> <a href="{{ route('ubicacionSemaforos')}}"><i class="icon-map-marker"></i> <span>Ubicación de Semáforos</span></a> </li>
+      <li class="{{ Request::path() == 'inicio' ? 'active' : '' }}"><a href="{{ route('inicio') }}"><i class="icon icon-home"></i> <span>Inicio</span></a> </li>
 
-      <!--posicionar nuevo semaforo-->
-      <li> <a href="{{ route('nuevoSemaforo')}}"><i class="icon-map-marker"></i> <span>Nuevo Semáforo</span></a> </li>
 
-      <li> <a href="#"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
-      <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
-      <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
-      <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
-      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
+
+      <!--Modificar datos del propio usuario-->
+      <li class="submenu {{ Request::path() == 'verMisDatos' ? 'active' : '' }}
+                         {{ Request::path() == 'formularioModificarMisDatos' ? 'active' : '' }}
+                         {{ Request::path() == 'modificarMisDatos' ? 'active' : '' }}">
+                         <a href="#"><i class="icon-user"></i>
+                           <span>Mis datos</span>
+                         </a>
         <ul>
-          <li><a href="form-common.html">Basic Form</a></li>
-          <li><a href="form-validation.html">Form with Validation</a></li>
-          <li><a href="form-wizard.html">Form with Wizard</a></li>
+          <li><a href="{{ route('verMisDatos') }}">Ver mis datos</a></li>
+          <li><a href="{{ route('formularioModificarMisDatos') }}">Modificar mis datos</a></li>
         </ul>
       </li>
-      <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
-      <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
-      <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">5</span></a>
+
+@if(auth()->user()->id_tipo_usuario == '1')
+      <!--Gestion de Usuarios-->
+      <li class="submenu {{ Request::path() == 'registrarUsuario' ? 'active' : '' }}
+                         {{ Request::path() == 'registroUsuarioExitoso' ? 'active' : '' }}
+                         {{ Request::path() == 'usuariosModificar' ? 'active' : '' }}
+                         {{ Request::path() == 'formModificarUsuario' ? 'active' : '' }}
+                         {{ Request::path() == 'modificarUsuario' ? 'active' : '' }}">
+                         <a href="#"><i class="icon icon-group"></i>
+                           <span>Gestión de Usuarios</span>
+                         </a>
         <ul>
-          <li><a href="index2.html">Dashboard2</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="calendar.html">Calendar</a></li>
-          <li><a href="invoice.html">Invoice</a></li>
-          <li><a href="chat.html">Chat option</a></li>
+          <li><a href="{{ route('registrarUsuario') }}">Registrar Usuario</a></li>
+          <li><a href="{{ route('verModificarUsuarios') }}">Modificar Usuario</a></li>
+          <!--li><a href="{{ route('verBorrarUsuarios') }}">Borrar Usuario</a></li-->
         </ul>
       </li>
-      <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Error</span> <span class="label label-important">4</span></a>
+
+      <!--Reportes-->
+      <li class="submenu {{ Request::path() == 'reporteContratos' ? 'active' : '' }}
+                         {{ Request::path() == 'reporteVerUsuarios' ? 'active' : '' }}
+                         {{ Request::path() == 'seleccionarReporteDeVentas' ? 'active' : '' }}
+                         {{ Request::path() == 'reporteDetalle' ? 'active' : '' }}
+                         {{ Request::path() == 'reporteNumero' ? 'active' : '' }}">
+                         <a href="#"><i class="icon-file"></i>
+                           <span>Reportes</span>
+                         </a>
         <ul>
-          <li><a href="error403.html">Error 403</a></li>
-          <li><a href="error404.html">Error 404</a></li>
-          <li><a href="error405.html">Error 405</a></li>
-          <li><a href="error500.html">Error 500</a></li>
+          <li><a href="{{ route('reporteContratos') }}">Contratos</a></li>
+          <li><a href="{{ route('reporteVerUsuarios') }}">Usuarios</a></li>
+          <li><a href="{{ route('seleccionarReporteDeVentas') }}">Ventas</a></li>
         </ul>
       </li>
-      <li class="content"> <span>Monthly Bandwidth Transfer</span>
-        <div class="progress progress-mini progress-danger active progress-striped">
-          <div style="width: 77%;" class="bar"></div>
-        </div>
-        <span class="percent">77%</span>
-        <div class="stat">21419.94 / 14000 MB</div>
+@endif
+
+      <!--Ver promociones para introducir un cupon de un cliente-->
+      <li class="{{ Request::path() == 'verPromociones' ? 'active' : '' }}
+                 {{ Request::path() == 'formularioIntroducirCupon' ? 'active' : '' }}
+                 {{ Request::path() == 'introducirCupon' ? 'active' : '' }}">
+                 <a href="{{ route('verPromociones') }}"><i class="icon-list-alt"></i>
+                   <span>Promociones</span>
+                 </a>
       </li>
-      <li class="content"> <span>Disk Space Usage</span>
-        <div class="progress progress-mini active progress-striped">
-          <div style="width: 87%;" class="bar"></div>
-        </div>
-        <span class="percent">87%</span>
-        <div class="stat">604.44 / 4000 MB</div>
-      </li>
+
+      <!--Tutorial de cómo usar-->
+      <li class="{{ Request::path() == 'ayuda' ? 'active' : '' }}"><a href="{{ route('ayuda') }}"><i class="icon-question-sign"></i> <span>Ayuda</span></a> </li>
+
     </ul>
   </div>
 <!--sidebar-menu-->

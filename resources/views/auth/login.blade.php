@@ -3,13 +3,29 @@
 @section('content')
 
 
+
   <form id="loginform" class="form-vertical" role="form" method="post" action="{{ route('login') }}">
       {{ csrf_field() }}
 
   <!-- Logo -->
-  <div class="control-group normal_text"> <h3><img src="img/logoSisem.png" alt="Logo" /></h3></div>
+  <div class="control-group normal_text"> <h3><img src="img/logo_groupon.png" alt="Logo" /></h3></div>
 
+      <!-- Nombre del sistema -->
+      <h3 align="center">Netpon - Empresas</h3>
+      <!--p align="center">Por favor, introduzca sus datos</p --!>
 
+      <!-- reCAPTCHA -->
+      <div class="control-group">
+        <div class="form-group">
+            <div class="controls">
+                <div class="main_input_box">
+                  <div class="col-md-6 col-md-offset-4">
+                    {!! Recaptcha::render() !!}
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
 
       <!-- Usuario -->
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -41,13 +57,14 @@
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
-
                 </div>
             </div>
         </div>
       </div>
 
-      <!-- Recordar -->
+
+
+      <!-- Recordar >
       <div class="form-group">
           <div class="justify">
               <div class="checkbox">
@@ -56,17 +73,11 @@
                   </label>
               </div>
           </div>
-      </div>
-
+      </div-->
 
       <div class="form-actions">
-          <!-- Boton Olvide mi contraseña -->
-          <span class="pull-left">
-            <a href="#" class="flip-link btn btn-info" id="to-recover">
-              Olvidé mi contraseña
-            </a>
-          </span>
-
+        <!-- Boton olvidé mi contraseña -->
+          <!--span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">Olvidé mi Contraseña</a></span-->
           <!-- Boton iniciar sesión -->
           <span class="pull-right">
             <button type="submit" class="btn btn-success" />
@@ -93,4 +104,11 @@
       </div>
   </form>
 
+
+<style>
+    /* Centrar reCAPTCHA */
+    .g-recaptcha {
+      display: inline-block;
+    }
+</style>
 @endsection

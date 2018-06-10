@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        this->crearUsuario();
+        $this->crearUsuario();
     }
 
     //Faker para crear semaforos al azar
@@ -24,9 +24,11 @@ class UsersTableSeeder extends Seeder
     public function crearUsuario()
     {
         factory(App\User::class)->create([
-            'name'  => 'Admin Root',
-            'email'  => 'abcdef@hotmail.com',
-            'password'   => bcrypt('abcdef'),
+            'name'  => 'Admin',
+            'lastname'  => 'Root',
+            'email'  => 'Admin@hotmail.com',
+            'password'   => bcrypt('123456'),
+            'id_tipo_usuario'  => '1',
         ]);
     }
 }

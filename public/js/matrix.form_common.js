@@ -1,17 +1,17 @@
 
 $(document).ready(function(){
-	
+
 	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
-	
+
 	$('select').select2();
     $('.colorpicker').colorpicker();
     $('.datepicker').datepicker();
 });
 
-$(document).ready(function() { 	
+$(document).ready(function() {
 
 	//------------- Tags plugin  -------------//
-	
+
 	$("#tags").select2({
 		tags:["red", "green", "blue", "orange"]
 	});
@@ -71,14 +71,14 @@ $(document).ready(function() {
     });
 
     /*Currency spinner*/
-    $( "#spinner4" ).spinner({ 
-    	numberFormat: "C" 
+    $( "#spinner4" ).spinner({
+    	numberFormat: "C"
     });
 
 	//------------- Colorpicker -------------//
 	if($('div').hasClass('picker')){
 		$('.picker').farbtastic('#color');
-	}	
+	}
 	//------------- Datepicker -------------//
 	if($('#datepicker').length) {
 		$("#datepicker").datepicker({
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	if($('#combined-picker').length) {
 		$('#combined-picker').datetimepicker();
 	}
-	
+
     //------------- Time entry (picker) -------------//
 	$('#timepicker').timeEntry({
 		show24Hours: true,
@@ -135,9 +135,7 @@ $(document).ready(function() {
 
 		// Drop lists for link/image/media/template dialogs
 		template_external_list_url : "lists/template_list.js",
-		external_link_list_url : "lists/link_list.js",
-		external_image_list_url : "lists/image_list.js",
-		media_external_list_url : "lists/media_list.js",
+		
 
 		// Replace values for the template plugin
 		template_replace_values : {
@@ -148,7 +146,7 @@ $(document).ready(function() {
 
 	//Boostrap modal
 	$('#myModal').modal({ show: false});
-	
+
 	//add event to modal after closed
 	$('#myModal').on('hidden', function () {
 	  	console.log('modal is closed');
@@ -193,7 +191,7 @@ $('#stat5').sparkline(positive,{
 	type: 'bar'
 });
 
-$('#stat6').sparkline(positive, { 
+$('#stat6').sparkline(positive, {
 	width: 70,//Width of the chart - Defaults to 'auto' - May be any valid css width - 1.5em, 20px, etc (using a number without a unit specifier won't do what you want) - This option does nothing for bar and tristate chars (see barWidth)
 	height: 20,//Height of the chart - Defaults to 'auto' (line height of the containing tag)
 	lineColor: '#88bbc8',//Used by line and discrete charts to specify the colour of the line drawn as a CSS values string
@@ -204,4 +202,3 @@ $('#stat6').sparkline(positive, {
 	spotRadius: 3,//Radius of all spot markers, In pixels (default: 1.5) - Integer
 	lineWidth: 2//In pixels (default: 1) - Integer
 });
-

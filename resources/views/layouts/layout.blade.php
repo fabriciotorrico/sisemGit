@@ -4,19 +4,24 @@
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="css/fullcalendar.css" />
-<link rel="stylesheet" href="css/matrix-style.css" />
-<link rel="stylesheet" href="css/matrix-media.css" />
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link rel="stylesheet" href="css/jquery.gritter.css" />
+
+<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/bootstrap-responsive.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/fullcalendar.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/matrix-style.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/matrix-media.css') }}">
+<link rel="stylesheet" href="{{ asset('/font-awesome/css/font-awesome.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/jquery.gritter.css') }}">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
-<title>{{ config('app.name', 'sisem - Inicio') }}</title>
 
-<link rel="shortcut icon" href="{{{ asset('img/logoIcono.ico') }}}">
 
+<!--cabecera-->
+@yield('head')
+
+<title>Netpon - Empresas</title>
+
+<link rel="shortcut icon" href="{{ asset('img/logoIco.ico') }}">
 
 </head>
 <body>
@@ -24,23 +29,52 @@
 <!--Header-part-->
 <div id="header">
   <!-- Logo -->
-  <h4><img src="img/logoSisemInicio.png" alt="Logo" /></h4>
+  <h4><img src={{ asset('/img/logo_groupon.png') }} alt="Logo" /></h4>
 </div>
+
 <!--close-Header-part-->
 
 
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <!--li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
+
+    <!--Obtenemos el tipo de usuario-->
+    <?php $tipo_de_usuario = \DB::table('tipos_de_usuarios')
+        ->where('id_tipo_usuario',auth()->user()->id_tipo_usuario)
+        ->value('tipo_usuario');?>
+
+    <!--Boton Nombre de Usuario-->
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>
+      <span class="text">
+        <?php
+          $nombre = \DB::table('personas')
+                ->where('id_persona', auth()->user()->id_persona)
+                ->value('name');
+          $apellido = \DB::table('personas')
+                ->where('id_persona', auth()->user()->id_persona)
+                ->value('lastname');
+          echo $nombre." ".$apellido;
+        ?>
+      </span><b class="caret"></b></a>
+
       <ul class="dropdown-menu">
-        <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+        <li>
+          <a href=""><i class="icon-user"></i> Usuario
+            <?php
+            echo $tipo_de_usuario = \DB::table('tipos_de_usuarios')
+                  ->where('id_tipo_usuario', auth()->user()->id_tipo_usuario)
+                  ->value('tipo_usuario');
+            ?>
+          </a>
+        </li>
         <li class="divider"></li>
-        <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
-        <li class="divider"></li>
-        <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+        <li><a href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();"><i class="icon-key"></i>
+            Salir </a></li>
       </ul>
-    </li-->
+    </li>
 
     <!--Boton salir-->
     <li class="">
@@ -55,16 +89,15 @@
       </form>
     </li>
 
+    <!--Boton ayuda-->
+    <li class="">
+      <a href="{{ route('ayuda') }}"><i class="icon-question-sign"></i>
+          Ayuda
+      </a>
+    </li>
+
   </ul>
 </div>
-<!--close-top-Header-menu-->
-
-<!--start-top-serch-->
-<!--div id="search">
-  <input type="text" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div-->
-<!--close-top-serch-->
 
 <!--incluir el Menu-->
 @include('partials.menu')
@@ -74,7 +107,7 @@
 <div id="content">
   <!-- home / inicio-->
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Ir al Inicio" class="tip-bottom"><i class="icon-home"></i> Inicio</a></div>
+    <div id="breadcrumb"> <a href="{{ route('inicio') }}" title="Ir al Inicio" class="tip-bottom"><i class="icon-home"></i> Inicio</a></div>
   </div>
   <!--End-home / inicio-->
 

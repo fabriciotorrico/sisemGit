@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Para snappy
+        Barryvdh\Snappy\ServiceProvider::class,
+
+        //Para sweet-alert
+        //UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+
+        //Provaider para reCAPTCHA
+        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+
     ],
 
     /*
@@ -226,6 +235,15 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //Para Snappy
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'Image' => Barryvdh\Snappy\Facades\SnappyImage::class,
+
+        //Para SweetAlert
+        //'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+
+        //Alias para reCAPTCHA
+        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
     ],
 
 ];

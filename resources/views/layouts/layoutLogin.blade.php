@@ -8,10 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'sisem - Login') }}</title>
+    <title>Netpon - Empresas</title>
 
 
-    <link rel="shortcut icon" href="{{{ asset('img/logoIcono.ico') }}}">
+    <link rel="shortcut icon" href="{{{ asset('img/logoIco.ico') }}}">
 
     <!-- Styles -->
     <!--link href="{{ asset('css/app.css') }}" rel="stylesheet"-->
